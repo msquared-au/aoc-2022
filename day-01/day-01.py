@@ -3,18 +3,17 @@
 
 import sys
 
-max_energy = 0
+energy = []
 current_energy = 0
 
-"""Echo a message"""
 for line in sys.stdin:
     line = line.rstrip()
     if 0 == len(line):
-        if current_energy > max_energy:
-            max_energy = current_energy
+        energy.append(current_energy)
         current_energy = 0
     else:
         current_energy += int(line)
-if current_energy > max_energy:
-    max_energy = current_energy
-print(f'Max energy: {max_energy}')
+if current_energy > 0:
+    energy.append(current_energy)
+energy.sort(reverse=True)
+print(f'Max energy: {energy[0]}')
